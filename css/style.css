@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import url(./normalize.css);
+@import url(./fonts.css);
 
 /* 기본 스타일 설정 */
 *, *::before, *::after { 
@@ -37,7 +38,7 @@ fieldset{
 }
 
 /* 공통 숨김 콘텐츠 */
-legend, .ally-hidden{
+legend, .a11y-hidden{
   position: absolute;
   width: 1px;
   height: 1px;
@@ -113,11 +114,6 @@ input[type="search"]:focus:-ms-input-placeholder { /* IE 10+ */
 }
 input[type="search"]:focus:-moz-placeholder { /* Firefox 18- */
   color: transparent;
-}
-
-.navigation{
-  background-color: pink;
-  height: 20vh;
 }
 
 .main{
@@ -215,6 +211,95 @@ input[type="search"]:focus:-moz-placeholder { /* Firefox 18- */
     background: url(./images/btn_search.png) no-repeat 0 0 / cover;
   }
 
+  /* 모바일 네비게이션 */
+  .btn-menubar{
+    background-color: transparent;
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    padding: 0;
+    position: absolute;
+    right: 1.5em;
+    top: 3.3em;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .menubar{
+    background-color: #fff;
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    left: 0;
+    border-radius: 1em;
+    transition: all 0.2s;
+  }
+
+  .menubar-top{
+    top: 0;
+  }
+
+  .menubar-middle{
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .menubar-bottom{
+    top: 100%;
+    transform: translateY(-100%);
+  }
+
+  .nav-act .menubar-middle{
+    transform: translate(-100%, -50%);
+  }
+
+  .nav-act .menubar-top{
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .nav-act .menubar-bottom{
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+  }
+
+  .menu{
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.85);
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100vh;
+    padding: 2em 1em;
+    list-style: none;
+    transform: translateX(-100%);
+    transition: all 0.2s;
+  }
+
+  .nav-act .menu{
+    transform: none;
+  }
+
+  .menu-list{
+    margin: 1em 0;
+  }
+
+  .sub-menu{
+    display: none;
+    padding-left: 3em;
+  }
+  
+  .menu-act .sub-menu{
+    display: block;
+  }
+
+  .sub-menu li{
+    margin: 0.5em 0;
+  }
+
+
 }
 
 /* Desktop Device */
@@ -224,7 +309,7 @@ input[type="search"]:focus:-moz-placeholder { /* Firefox 18- */
     align-items: center;
   }
 
-  .header, .main{
+  .header, .main, .menu{
     width: 1000px;
   }
 
@@ -266,6 +351,53 @@ input[type="search"]:focus:-moz-placeholder { /* Firefox 18- */
     padding: 0.15em 1em;
   }
 
+  /* 데스크탑 네비게이션 */
+  .navigation{
+    background-color: #988574;
+    color: #fff;
+    box-shadow: 0 -2px 5px 0 #aaa, 0 2px 5px 0 #aaa;
+  }
+
+  .btn-menubar{
+    display: none;
+  }
+
+  .menu, .sub-menu{
+    list-style: none;
+  }
+
+  .menu{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0;
+    /* overflow: hidden; */
+  }
+
+  .menu-list{
+    margin: 1em 0 ;
+    /* float: left; */
+  }
+
+  .menu-item{
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-shadow: 1px 0 0 #000, 0 1px 0 #000, -1px 0 0 #000, 0 -1px 0 #000;
+    cursor: text;
+  }
+
+  .sub-menu{
+    font-weight: 400;
+  }
+
+  .sub-menu li{
+    margin: 0.3em 0;
+  }
+
+  .menu-list::before{
+    text-shadow: 1px 0 0 #000, 0 1px 0 #000, -1px 0 0 #000, 0 -1px 0 #000;
+  }
+
   .main{
     justify-content: space-between;
   }
@@ -288,4 +420,6 @@ input[type="search"]:focus:-moz-placeholder { /* Firefox 18- */
   .twitter{
     width: 400px;
   }
+
+
 }
